@@ -1,6 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS restaurant;
-CREATE TABLE IF NOT EXISTS restaurant.meal_item (
-    id bigserial PRIMARY KEY,
+DROP TABLE IF EXISTS restaurant.meal_item;
+CREATE TABLE restaurant.meal_item (
+    id serial PRIMARY KEY,
     name VARCHAR NOT NULL,
     price FLOAT,
     content VARCHAR,
