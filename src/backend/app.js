@@ -7,7 +7,6 @@ const dotenv = require("dotenv").config();
 const { Pool, Client } = require("pg");
 //routes
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var menuRouter = require('./routes/menu');
 
 var app = express();
@@ -19,7 +18,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //connect routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/menu', menuRouter);
 
 // app.use(function(err, req, res, next) {
