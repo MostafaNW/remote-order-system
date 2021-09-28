@@ -6,10 +6,19 @@ var router = express.Router();
 const dotenv = require("dotenv").config(); //credentials for database
 const { Pool, Client } = require("pg");
 const pool = new Pool();
-
-/* GET users listing. */
-router.get("/:id", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   console.log(req.params.id);
+  const query = "SELECT title FROM restaurant.menu";
+  try {
+    const result = await pool.query(query);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+    res.status(500).json({ message: "Error" });
+  }
+});
+
+router.get("/:id", async (req, res, next) => {
   const query =
     "SELECT id, title, content FROM restaurant.menu AS menu WHERE menu.id = $1";
   const values = [req.params.id];
