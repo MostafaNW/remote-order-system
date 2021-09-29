@@ -1,26 +1,28 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 const dotenv = require("dotenv").config();
-const { Pool, Client } = require("pg");
+const cors = require('cors');
+
 //routes
 const indexRouter = require("./routes/index");
 const menuRouter = require("./routes/menu");
 const itemRouter = require("./routes/item");
 
-var app = express();
+const app = express();
 
+app.use(cors())
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 //connect routes
-app.use("/", indexRouter);
-app.use("/menu", menuRouter);
-app.use("/item", itemRouter);
+app.use("/api/", indexRouter);
+app.use("/api/menu", menuRouter);
+app.use("/api/item", itemRouter);
 
 // app.use(function(err, req, res, next) {
 //   // set locals, only providing error in development

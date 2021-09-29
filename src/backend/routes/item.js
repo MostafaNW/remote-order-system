@@ -9,7 +9,7 @@ const pool = new Pool();
 router.get("/:menu_id", async (req, res, next) => {
   console.log("Retreiving menu items...");
   const query =
-    "SELECT meal_item.name, meal_item.price, meal_item.content\
+    "SELECT meal_item.id, meal_item.name, meal_item.price, meal_item.content\
      FROM restaurant.meal_item AS meal_item, restaurant.menu_item AS menu_item\
      WHERE meal_item.id=menu_item.meal_item_id AND menu_item.menu_id=$1";
   const values = [req.params.menu_id];
