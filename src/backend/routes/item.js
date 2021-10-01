@@ -18,7 +18,7 @@ router.get("/:menu_id", async (req, res, next) => {
     res.status(200).json(result.rows);
   } catch (err) {
     console.log(`Error: ${err}`);
-    res.status(500).json({ message: "Error" });
+    res.status(500).render('500');
   }
 });
 
