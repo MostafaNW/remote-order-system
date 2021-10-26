@@ -8,9 +8,9 @@ const cors = require("cors");
 const expressHandlebars = require("express-handlebars");
 
 //routes
-const indexRouter = require("./routes/index");
-const menuRouter = require("./routes/menu");
-const itemRouter = require("./routes/item");
+// const indexRouter = require("./routes/index");
+const menusRouter = require("./routes/menus/menus");
+const itemsRouter = require("./routes/items/items");
 
 const app = express();
 
@@ -22,9 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 //connect routes
-app.use("/api/", indexRouter);
-app.use("/api/menu", menuRouter);
-app.use("/api/item", itemRouter);
+// app.use("/api/", indexRouter);
+app.use("/api/menus", menusRouter);
+app.use("/api/items", itemsRouter);
 //setting up handlebars view engine
 app.engine(
   "handlebars",
@@ -34,16 +34,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.use((req, res) => {
-  res.status(404);
-  res.render("404");
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.message);
-  res.status(500);
-  res.render("500");
-});
 // app.use(function(err, req, res, next) {
 //   // set locals, only providing error in development
 //   res.locals.message = err.message;
