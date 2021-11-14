@@ -24,19 +24,13 @@ module.exports = {
       "SELECT id, title, content FROM restaurant.menu AS menu WHERE menu.id = $1";
     const values = [id];
     const result = await pool.query(query, values);
-    // console.log(result.rows);
-    if (result.rows.length == 0) res.status(404).send("RESOURCE NOT FOUND");
-    return { menu: result.rows[0] };
+    return result.rows.length == 0 ? null : result.rows[0];
   },
 
   getMenus: async () => {
     const query = "SELECT id, title, content FROM restaurant.menu";
-    try {
-      const result = await pool.query(query);
-      return { result: result.rows };
-    } catch (err) {
-      console.log(`Error keys: ${Object.keys(error)}`);
-      return { error: error.code };
-    }
+    const result = await pool.query(query);
+    return { result: result.rows };
+    
   },
 };

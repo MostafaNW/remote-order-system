@@ -9,30 +9,34 @@ const db = require("../../database/database");
 router.get("/", async (req, res, next) => {
   try {
     const result = await db.getMenus();
-    if (result.error) {
-      next({ status: 500, message: "server error" });
-    }
-    // if (result.result.length == 0)
-    //   next({ status: 200, message: "Menu not found" });
     res.status(200).json(result.result);
+    return;
   } catch (err) {
     console.log(`Error: ${err}`);
-    res.status(500).json({ message: "Error" });
+    next();
   }
 });
 
 router.get("/:id", async (req, res, next) => {
   try {
     const result = await db.getMenu(req.params.id);
-    if (!result.menu)
-      next({
-        status: 200,
-        message: `menu with id: ${req.params.id} doesn't exist`,
-      });
-    res.status(200).json(result.menu);
+    // console.log(`result: ${JSON.stringify(result)}`);
+    if (!result) {
+      res
+        .status(200)
+        .json({ message: `menu with id: ${req.params.id} doesn't exist` });
+        return;
+    }
+    res.status(200).json(result);
+    return;
   } catch (err) {
-    next("test");
+    next();
   }
+});
+
+router.use("/*", async (req, res, next) => {
+  console.log("SERVER ERROR");
+  res.status(500).json({ message: "500 SERVER ERROR" });
 });
 
 module.exports = router;
