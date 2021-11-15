@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15vh;
+  /* background: linear-gradient(#e1cfcf 0%, #808080 100%); */
+  background: salmon;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 20;
+}
+.header h1 {
+  font-size: 1.5rem;
+  display: none;
+}
+.container ul a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  border: 2px solid salmon;
+  background-color: sandybrown;
+  border-radius: 50em;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  width: 100%;
+}
+.container {
+  display: none;
+}
+
+.container ul {
+  list-style: none;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container ul li {
+  flex-grow: 1;
+  padding-left: 5%;
+}
+ul li a:hover {
+  background-color: white;
+  color: salmon;
+}
+/*COLLAPSABLE NAVBAR*/
+.c-navbar ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position:fixed;
+  height: 100vh;
+  width:100vw;
+  z-index: 10;
+  padding:0;
+  background: salmon;
+}
+
+.c-navbar ul li a {
+  font-size: 2rem;
+  color: black;
+}
+
+.open-btn {
+  font-size: 3rem;
+  padding-bottom: 10px;
+}
+
+.open-btn:hover{
+  cursor: pointer;
+  
+}
+
+@media  (min-width: 1080px) {
+  .open-btn {
+    display: none;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+  }
+}
+@media (min-width: 768px) {
+  .header {
+    justify-content: space-between;
+    padding: 0 1%;
+  }
+  .header h1 {
+    font-size: 2rem;
+    display: block;
+  }
+  .container ul a {
+    font-size: 1.25rem;
+  }
+}

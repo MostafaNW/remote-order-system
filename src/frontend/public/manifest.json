@@ -1,0 +1,8 @@
+{
+  "short_name": "Order Online",
+  "name": "[restraunt name] online order system",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
