@@ -12,10 +12,11 @@ module.exports = {
     const values = [id];
     try {
       const result = await pool.query(query, values);
-      return { result: result.rows };
+      //console.log(JSON.stringify(result.rows));
+      return result.rows;
     } catch (error) {
       console.log(`Error keys: ${Object.keys(error)}`);
-      return { error: error.code };
+      return null;
     }
   },
 
@@ -31,6 +32,5 @@ module.exports = {
     const query = "SELECT id, title, content FROM restaurant.menu";
     const result = await pool.query(query);
     return { result: result.rows };
-    
   },
 };

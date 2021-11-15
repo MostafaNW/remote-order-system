@@ -9,11 +9,10 @@ const db = require("../../database/database");
 router.get("/", async (req, res, next) => {
   try {
     const result = await db.getMenus();
-    res.status(200).json(result.result);
-    return;
+    return res.status(200).json(result.result);
   } catch (err) {
     console.log(`Error: ${err}`);
-    next();
+    next("500 SERVER ERROR");
   }
 });
 
@@ -22,21 +21,19 @@ router.get("/:id", async (req, res, next) => {
     const result = await db.getMenu(req.params.id);
     // console.log(`result: ${JSON.stringify(result)}`);
     if (!result) {
-      res
+      return res
         .status(200)
         .json({ message: `menu with id: ${req.params.id} doesn't exist` });
-        return;
     }
-    res.status(200).json(result);
-    return;
+    return res.status(200).json(result);
   } catch (err) {
-    next();
+    next("500 SERVER ERROR");
   }
 });
 
-router.use("/*", async (req, res, next) => {
-  console.log("SERVER ERROR");
-  res.status(500).json({ message: "500 SERVER ERROR" });
-});
+// router.use("/*", async (req, res, next) => {
+//   console.log("SERVER ERROR");
+//   res.status(500).json({ message: "500 SERVER ERROR" });
+// });
 
 module.exports = router;
