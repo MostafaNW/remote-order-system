@@ -8,7 +8,7 @@
   padding-top: 15vh;
 }
 .welcome-image {
-  background-image: url(../../assets/sushi-welcome.jpg);
+  background-image: url(../../assets/6.jpg);
   /* background-size: 100vw 75vh; */
   background-repeat: no-repeat;
   background-size: cover;
@@ -16,7 +16,7 @@
 }
 
 .about-image {
-  background-image: url(../../assets/sushi-about.jpg);
+  background-image: url(../../assets/8.jpg);
   background-size: 100% 100%;
 }
 .container {
