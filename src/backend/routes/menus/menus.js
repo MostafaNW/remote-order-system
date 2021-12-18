@@ -31,9 +31,4 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-// router.use("/*", async (req, res, next) => {
-//   console.log("SERVER ERROR");
-//   res.status(500).json({ message: "500 SERVER ERROR" });
-// });
-
 module.exports = router;
